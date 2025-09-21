@@ -1,0 +1,225 @@
+<Window x:Class="JsonViewer.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:JsonViewer.Models.ViewModels"
+        xmlns:converters="clr-namespace:JsonViewer.Converters"
+        xmlns:controls="clr-namespace:JsonViewer.Controls"
+        xmlns:views="clr-namespace:JsonViewer.Views"
+        mc:Ignorable="d"
+        Title="⚡ Cyber JSON Viewer - 科技感JSON查看器" 
+        Height="900" Width="1400"
+        MinHeight="700" MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize">
+    
+
+
+    
+    <Window.Resources>
+        <converters:FileSizeConverter x:Key="FileSizeConverter"/>
+        <converters:JsonValueConverter x:Key="JsonValueConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:LevelToMarginConverter x:Key="LevelToMarginConverter"/>
+        <converters:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+        <converters:BoolToViewModeConverter x:Key="BoolToViewModeConverter"/>
+        
+        <!-- 工具栏按钮样式 -->
+        <Style x:Key="ToolbarButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        
+        <!-- 搜索框样式 -->
+        <Style x:Key="SearchBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <!-- 主窗口边框和发光效果 -->
+        <Border Background="{DynamicResource BackgroundBrush}"
+                BorderBrush="{DynamicResource CyberAccentGradient}"
+                BorderThickness="2"
+                CornerRadius="12">
+            <Border.Effect>
+                <DropShadowEffect Color="#58A6FF" 
+                                Direction="0" 
+                                ShadowDepth="0" 
+                                BlurRadius="20" 
+                                Opacity="0.3"/>
+            </Border.Effect>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>      <!-- 主内容区 -->
+                </Grid.RowDefinitions>
+                
+                <!-- 主内容区 -->
+                <views:FreeHighPerformanceJsonView x:Name="FreeHighPerformanceView" 
+                                                   Grid.Row="0" 
+                                                   Margin="4"/>
+            </Grid>
+        </Border>
+        
+        <!-- 科技感加载进度覆盖层 -->
+        <Grid Grid.RowSpan="2" Background="#AA000000" 
+              Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{DynamicResource CyberCardStyle}"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    MinWidth="400" 
+                    MinHeight="300">
+                <StackPanel>
+                    <!-- 科技感标题 -->
+                    <StackPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,0,0,20">
+                        <TextBlock Text="⚡" FontSize="24" 
+                                 Foreground="{DynamicResource InfoBrush}" 
+                                 Margin="0,0,8,0"/>
+                        <TextBlock Text="处理中..." 
+                                 FontSize="20" 
+                                 FontWeight="Bold" 
+                                 Foreground="{DynamicResource ForegroundBrush}"/>
+                    </StackPanel>
+                    
+                    <!-- 脉冲动画圆环 -->
+                    <Grid Width="80" Height="80" Margin="0,0,0,20">
+                        <Ellipse Width="80" Height="80"
+                                Stroke="{DynamicResource CyberButtonGradient}"
+                                StrokeThickness="3"
+                                Opacity="0.3">
+                            <Ellipse.RenderTransform>
+                                <ScaleTransform x:Name="PulseScale" ScaleX="1" ScaleY="1"/>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetName="PulseScale"
+                                                           Storyboard.TargetProperty="ScaleX"
+                                                           From="1" To="1.2" Duration="0:0:1"
+                                                           AutoReverse="True"/>
+                                            <DoubleAnimation Storyboard.TargetName="PulseScale"
+                                                           Storyboard.TargetProperty="ScaleY"
+                                                           From="1" To="1.2" Duration="0:0:1"
+                                                           AutoReverse="True"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                        
+                        <Ellipse Width="60" Height="60"
+                                Stroke="{DynamicResource AccentBrush}"
+                                StrokeThickness="2">
+                            <Ellipse.RenderTransform>
+                                <RotateTransform x:Name="SpinRotation"/>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SpinRotation"
+                                                           Storyboard.TargetProperty="Angle"
+                                                           From="0" To="360"
+                                                           Duration="0:0:2"
+                                                           RepeatBehavior="Forever"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                    </Grid>
+                    
+                    <!-- 科技感进度条 -->
+                    <ProgressBar Value="{Binding LoadingProgress}" 
+                               Width="300" Height="8" 
+                               Minimum="0" Maximum="100" 
+                               Margin="0,0,0,15"
+                               Style="{DynamicResource CyberProgressBarStyle}"/>
+                    
+                    <!-- 进度百分比 -->
+                    <TextBlock Text="{Binding LoadingProgress, StringFormat={}{0:F1}%}" 
+                             HorizontalAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"
+                             Margin="0,0,0,15" 
+                             Foreground="{DynamicResource AccentBrush}"/>
+                    
+                    <!-- 状态消息 -->
+                    <TextBlock Text="{Binding StatusMessage}" 
+                             HorizontalAlignment="Center" 
+                             Margin="0,0,0,15" 
+                             FontSize="14" 
+                             TextWrapping="Wrap" 
+                             MaxWidth="350"
+                             Foreground="{DynamicResource SecondaryForegroundBrush}"/>
+                    
+                    <!-- 文件信息卡片 -->
+                    <Border Background="{DynamicResource SurfaceBackgroundBrush}"
+                           BorderBrush="{DynamicResource BorderBrush}"
+                           BorderThickness="1"
+                           CornerRadius="8"
+                           Padding="16"
+                           Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Grid.Row="0">
+                                <TextBlock Text="📁 文件大小" 
+                                         FontSize="10" 
+                                         Foreground="{DynamicResource MutedForegroundBrush}"/>
+                                <TextBlock Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}" 
+                                         FontSize="14" 
+                                         FontWeight="Bold"
+                                         Foreground="{DynamicResource InfoBrush}"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1" Grid.Row="0">
+                                <TextBlock Text="🔢 节点数量" 
+                                         FontSize="10" 
+                                         Foreground="{DynamicResource MutedForegroundBrush}"/>
+                                <TextBlock Text="{Binding TotalNodes, StringFormat={}{0:N0}}" 
+                                         FontSize="14" 
+                                         FontWeight="Bold"
+                                         Foreground="{DynamicResource SuccessBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- 取消按钮 -->
+                    <Button Content="取消处理" 
+                           Width="120" Height="36" 
+                           Command="{Binding CancelLoadingCommand}"
+                           Style="{DynamicResource CyberButtonStyle}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+    
+    <!-- 键盘快捷键 -->
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OpenFileCommand}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveAsCommand}"/>
+        <KeyBinding Key="F5" Command="{Binding RefreshCommand}"/>
+        <KeyBinding Key="F" Modifiers="Ctrl" Command="{Binding SearchCommand}"/>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding ToggleThemeCommand}"/>
+    </Window.InputBindings>
+</Window>

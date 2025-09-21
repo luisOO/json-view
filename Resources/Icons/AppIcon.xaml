@@ -1,0 +1,403 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 应用程序主图标 - JSON文档图标 -->
+    <DrawingImage x:Key="AppIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V32 H32 V0 H0 Z">
+                <!-- 文档背景 -->
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M4,2 L24,2 L28,6 L28,30 L4,30 Z"/>
+                
+                <!-- 文档折角 -->
+                <GeometryDrawing Brush="#FF1976D2" Geometry="M24,2 L28,6 L24,6 Z"/>
+                
+                <!-- JSON大括号 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M8,10 L8,8 L6,8 L6,12 L8,12 L8,10 M10,10 L10,8 L12,8 L12,12 L10,12 L10,10">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- JSON内容线条 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M8,14 L20,14 M8,16 L18,16 M8,18 L22,18 M8,20 L16,20 M8,22 L20,22">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- JSON右大括号 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M22,24 L22,26 L24,26 L24,22 L22,22 L22,24 M20,24 L20,26 L18,26 L18,22 L20,22 L20,24">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- 小尺寸应用程序图标 -->
+    <DrawingImage x:Key="AppIconSmall">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 文档背景 -->
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M2,1 L12,1 L14,3 L14,15 L2,15 Z"/>
+                
+                <!-- 文档折角 -->
+                <GeometryDrawing Brush="#FF1976D2" Geometry="M12,1 L14,3 L12,3 Z"/>
+                
+                <!-- JSON符号 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M4,5 L4,4 L3,4 L3,6 L4,6 L4,5 M5,5 L5,4 L6,4 L6,6 L5,6 L5,5">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="0.8"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- JSON内容 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M4,7 L10,7 M4,8 L9,8 M4,9 L11,9 M4,10 L8,10">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="0.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- JSON右括号 -->
+                <GeometryDrawing Brush="#FFFFFFFF" Geometry="M11,12 L11,13 L12,13 L12,11 L11,11 L11,12 M10,12 L10,13 L9,13 L9,11 L10,11 L10,12">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFFFFF" Thickness="0.8"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- 文件类型图标 -->
+    <DrawingImage x:Key="FileIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                <!-- 文档背景 -->
+                <GeometryDrawing Brush="#FFF5F5F5" Geometry="M3,1 L18,1 L21,4 L21,23 L3,23 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFCCCCCC" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 文档折角 -->
+                <GeometryDrawing Brush="#FFEEEEEE" Geometry="M18,1 L21,4 L18,4 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFCCCCCC" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- 文件夹图标 -->
+    <DrawingImage x:Key="FolderIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                <!-- 文件夹背景 -->
+                <GeometryDrawing Brush="#FFFFC107" Geometry="M2,4 L10,4 L12,6 L22,6 L22,20 L2,20 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFFA000" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 文件夹标签 -->
+                <GeometryDrawing Brush="#FFFFA000" Geometry="M2,4 L10,4 L12,6 L10,6 L2,6 Z"/>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON对象图标 -->
+    <DrawingImage x:Key="JsonObjectIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 大括号 -->
+                <GeometryDrawing Brush="#FF2196F3">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="4,2">
+                                <LineSegment Point="2,2"/>
+                                <LineSegment Point="2,4"/>
+                                <LineSegment Point="1,5"/>
+                                <LineSegment Point="1,6"/>
+                                <LineSegment Point="2,7"/>
+                                <LineSegment Point="2,9"/>
+                                <LineSegment Point="4,9"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF2196F3" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <GeometryDrawing Brush="#FF2196F3">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="12,2">
+                                <LineSegment Point="14,2"/>
+                                <LineSegment Point="14,4"/>
+                                <LineSegment Point="15,5"/>
+                                <LineSegment Point="15,6"/>
+                                <LineSegment Point="14,7"/>
+                                <LineSegment Point="14,9"/>
+                                <LineSegment Point="12,9"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF2196F3" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 内容点 -->
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M6,4 A0.5,0.5 0 1,1 6,5 A0.5,0.5 0 1,1 6,4"/>
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M8,4 A0.5,0.5 0 1,1 8,5 A0.5,0.5 0 1,1 8,4"/>
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M10,4 A0.5,0.5 0 1,1 10,5 A0.5,0.5 0 1,1 10,4"/>
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M6,6 A0.5,0.5 0 1,1 6,7 A0.5,0.5 0 1,1 6,6"/>
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M8,6 A0.5,0.5 0 1,1 8,7 A0.5,0.5 0 1,1 8,6"/>
+                <GeometryDrawing Brush="#FF2196F3" Geometry="M10,6 A0.5,0.5 0 1,1 10,7 A0.5,0.5 0 1,1 10,6"/>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON数组图标 -->
+    <DrawingImage x:Key="JsonArrayIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 方括号 -->
+                <GeometryDrawing Brush="#FF4CAF50">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="3,2">
+                                <LineSegment Point="2,2"/>
+                                <LineSegment Point="2,14"/>
+                                <LineSegment Point="3,14"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <GeometryDrawing Brush="#FF4CAF50">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="13,2">
+                                <LineSegment Point="14,2"/>
+                                <LineSegment Point="14,14"/>
+                                <LineSegment Point="13,14"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 数组元素 -->
+                <GeometryDrawing Brush="#FF4CAF50" Geometry="M5,4 L11,4">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF4CAF50" Geometry="M5,6 L9,6">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF4CAF50" Geometry="M5,8 L12,8">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF4CAF50" Geometry="M5,10 L10,10">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF4CAF50" Geometry="M5,12 L11,12">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF4CAF50" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON字符串图标 -->
+    <DrawingImage x:Key="JsonStringIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 引号 -->
+                <GeometryDrawing Brush="#FFFF5722" Geometry="M3,4 L3,2 L4,2 L4,4 M3,6 L3,4">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFF5722" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <GeometryDrawing Brush="#FFFF5722" Geometry="M12,4 L12,2 L13,2 L13,4 M12,6 L12,4">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFF5722" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 字符串内容 -->
+                <GeometryDrawing Brush="#FFFF5722" Geometry="M5,6 L11,6 M5,8 L10,8 M5,10 L11,10">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFF5722" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON数字图标 -->
+    <DrawingImage x:Key="JsonNumberIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 数字123 -->
+                <GeometryDrawing Brush="#FF9C27B0">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <!-- 1 -->
+                            <PathFigure StartPoint="3,4">
+                                <LineSegment Point="4,3"/>
+                                <LineSegment Point="4,12"/>
+                                <LineSegment Point="2,12"/>
+                                <LineSegment Point="6,12"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF9C27B0" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <GeometryDrawing Brush="#FF9C27B0">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <!-- 2 -->
+                            <PathFigure StartPoint="7,4">
+                                <ArcSegment Point="10,4" Size="1.5,1.5" IsLargeArc="False" SweepDirection="Clockwise"/>
+                                <LineSegment Point="7,8"/>
+                                <LineSegment Point="11,8"/>
+                                <LineSegment Point="11,12"/>
+                                <LineSegment Point="7,12"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF9C27B0" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <GeometryDrawing Brush="#FF9C27B0">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <!-- 3 -->
+                            <PathFigure StartPoint="12,4">
+                                <LineSegment Point="15,4"/>
+                                <LineSegment Point="15,6"/>
+                                <LineSegment Point="13,6"/>
+                                <LineSegment Point="15,6"/>
+                                <LineSegment Point="15,10"/>
+                                <ArcSegment Point="12,10" Size="1.5,1.5" IsLargeArc="False" SweepDirection="Clockwise"/>
+                                <LineSegment Point="12,12"/>
+                                <LineSegment Point="15,12"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF9C27B0" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON布尔值图标 -->
+    <DrawingImage x:Key="JsonBooleanIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- 复选框 -->
+                <GeometryDrawing Brush="#FFFF9800" Geometry="M2,4 L14,4 L14,12 L2,12 Z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFF9800" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 勾选标记 -->
+                <GeometryDrawing Brush="#FFFF9800">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="4,8">
+                                <LineSegment Point="6,10"/>
+                                <LineSegment Point="12,6"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FFFF9800" Thickness="2"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- JSON null图标 -->
+    <DrawingImage x:Key="JsonNullIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V16 H16 V0 H0 Z">
+                <!-- NULL文字 -->
+                <GeometryDrawing Brush="#FF757575">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <!-- N -->
+                            <PathFigure StartPoint="2,4">
+                                <LineSegment Point="2,12"/>
+                                <LineSegment Point="2,4"/>
+                                <LineSegment Point="4,12"/>
+                                <LineSegment Point="4,4"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF757575" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 圆形表示null -->
+                <GeometryDrawing Brush="Transparent" Geometry="M8,6 A2,2 0 1,1 8,10 A2,2 0 1,1 8,6">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF757575" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- 斜线表示空 -->
+                <GeometryDrawing Brush="#FF757575" Geometry="M7,7 L9,9">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF757575" Thickness="1.5"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                
+                <!-- L -->
+                <GeometryDrawing Brush="#FF757575">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure StartPoint="12,4">
+                                <LineSegment Point="12,12"/>
+                                <LineSegment Point="14,12"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF757575" Thickness="1"/>
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

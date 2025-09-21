@@ -1,0 +1,153 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- 深色主题颜色定义 -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="ForegroundBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="#2D2D30"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#3F3F46"/>
+    
+    <!-- 强调色 -->
+    <SolidColorBrush x:Key="AccentBrush" Color="#0078D4"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#106EBE"/>
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="#005A9E"/>
+    
+    <!-- JSON语法高亮颜色 -->
+    <SolidColorBrush x:Key="JsonKeyBrush" Color="#9CDCFE"/>
+    <SolidColorBrush x:Key="JsonStringBrush" Color="#CE9178"/>
+    <SolidColorBrush x:Key="JsonNumberBrush" Color="#B5CEA8"/>
+    <SolidColorBrush x:Key="JsonBoolBrush" Color="#569CD6"/>
+    <SolidColorBrush x:Key="JsonNullBrush" Color="#808080"/>
+    <SolidColorBrush x:Key="JsonObjectBrush" Color="#DCDCAA"/>
+    <SolidColorBrush x:Key="JsonArrayBrush" Color="#4EC9B0"/>
+    
+    <!-- 状态颜色 -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#16C60C"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="#FF8C00"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="#E74856"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="#0078D4"/>
+    
+    <!-- TreeView样式 -->
+    <Style TargetType="TreeView">
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"/>
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"/>
+        <Setter Property="VirtualizingPanel.IsContainerVirtualizable" Value="True"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+    </Style>
+    
+    <!-- TreeViewItem样式 -->
+    <Style TargetType="TreeViewItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Padding" Value="4,2"/>
+        <Setter Property="Margin" Value="0,1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TreeViewItem">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <Border Name="ItemBorder" 
+                                Grid.Row="0" 
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="0,0,0,1" 
+                                BorderBrush="{StaticResource BorderBrush}"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- 展开/折叠按钮 -->
+                                <ToggleButton Name="Expander" 
+                                            Grid.Column="0"
+                                            IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                                            ClickMode="Press"
+                                            Width="16" Height="16"
+                                            Margin="0,0,4,0"
+                                            Background="Transparent"
+                                            BorderThickness="0">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    CornerRadius="2">
+                                                <Path Name="ExpandPath" 
+                                                      HorizontalAlignment="Center" 
+                                                      VerticalAlignment="Center"
+                                                      Stroke="{StaticResource ForegroundBrush}" 
+                                                      StrokeThickness="1"
+                                                      Data="M 4,6 L 8,10 L 4,14"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="ExpandPath" Property="Data" Value="M 6,4 L 10,8 L 14,4"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource SecondaryBackgroundBrush}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                                
+                                <!-- 内容区域 -->
+                                <ContentPresenter Grid.Column="1" 
+                                                Name="PART_Header" 
+                                                ContentSource="Header"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        
+                        <!-- 子项容器 -->
+                        <ItemsPresenter Grid.Row="1" 
+                                      Name="ItemsHost"
+                                      Margin="16,0,0,0"/>
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="Expander" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SecondaryBackgroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- TextBox样式 -->
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource SecondaryBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
+    
+    <!-- ScrollBar样式 -->
+    <Style TargetType="ScrollBar">
+        <Setter Property="Background" Value="{StaticResource SecondaryBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource BorderBrush}"/>
+    </Style>
+    
+</ResourceDictionary>

@@ -1,0 +1,16 @@
+<Application x:Class="JsonViewer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 引入科技感主题 -->
+                <ResourceDictionary Source="Resources/Themes/CyberTheme.xaml"/>
+                <!-- VirtualizingTreeView样式已移除，现在使用标准TreeView -->
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- 添加缺失的资源定义 -->
+            <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#161B22"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

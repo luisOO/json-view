@@ -1,0 +1,113 @@
+<Window x:Class="JsonViewer.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="关于 JSON Viewer" 
+        Height="400" Width="500"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource BackgroundBrush}">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 应用程序信息 -->
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <!-- 应用图标 -->
+            <Border Width="64" Height="64" Background="{DynamicResource AccentBrush}" 
+                    CornerRadius="8" Margin="0,0,0,16">
+                <TextBlock Text="📄" FontSize="32" HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" Foreground="White"/>
+            </Border>
+            
+            <!-- 应用名称 -->
+            <TextBlock Text="JSON Viewer" FontSize="24" FontWeight="Bold" 
+                       HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
+            
+            <!-- 版本信息 -->
+            <TextBlock Text="版本 1.0.0" FontSize="14" 
+                       HorizontalAlignment="Center" Margin="0,4,0,0" 
+                       Foreground="{DynamicResource SecondaryForegroundBrush}"/>
+        </StackPanel>
+        
+        <!-- 详细信息 -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- 描述 -->
+                <TextBlock Text="大文件JSON查看器" FontSize="16" FontWeight="Bold" 
+                           Foreground="{DynamicResource ForegroundBrush}" Margin="0,0,0,8"/>
+                
+                <TextBlock TextWrapping="Wrap" LineHeight="20" 
+                           Foreground="{DynamicResource ForegroundBrush}" Margin="0,0,0,16">
+                    <Run Text="一个专为处理大型JSON文件而设计的高性能查看器。支持最大100MB的JSON文件，"/>
+                    <Run Text="具有虚拟化树形视图、流式解析、内存优化等特性。"/>
+                </TextBlock>
+                
+                <!-- 主要特性 -->
+                <TextBlock Text="主要特性" FontSize="14" FontWeight="Bold" 
+                           Foreground="{DynamicResource ForegroundBrush}" Margin="0,0,0,8"/>
+                
+                <StackPanel Margin="16,0,0,16">
+                    <TextBlock Text="• 支持最大100MB的大型JSON文件" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 流式解析和分块加载技术" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 虚拟化树形视图，优化内存使用" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 快速搜索和过滤功能" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 深色/浅色主题切换" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 语法高亮和格式化显示" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 拖拽文件支持" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                </StackPanel>
+                
+                <!-- 技术信息 -->
+                <TextBlock Text="技术信息" FontSize="14" FontWeight="Bold" 
+                           Foreground="{DynamicResource ForegroundBrush}" Margin="0,0,0,8"/>
+                
+                <StackPanel Margin="16,0,0,16">
+                    <TextBlock Text="• 基于 .NET 8.0 和 WPF" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 使用 System.Text.Json 进行JSON解析" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• MVVM架构模式" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                    <TextBlock Text="• 依赖注入和日志记录" 
+                               Foreground="{DynamicResource ForegroundBrush}" Margin="0,2"/>
+                </StackPanel>
+                
+                <!-- 版权信息 -->
+                <TextBlock Text="版权信息" FontSize="14" FontWeight="Bold" 
+                           Foreground="{DynamicResource ForegroundBrush}" Margin="0,0,0,8"/>
+                
+                <TextBlock TextWrapping="Wrap" 
+                           Foreground="{DynamicResource SecondaryForegroundBrush}" Margin="0,0,0,8">
+                    <Run Text="© 2024 JSON Viewer. 保留所有权利。"/>
+                </TextBlock>
+                
+                <TextBlock TextWrapping="Wrap" 
+                           Foreground="{DynamicResource SecondaryForegroundBrush}">
+                    <Run Text="本软件基于MIT许可证发布。"/>
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- 按钮区域 -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="系统信息" Click="SystemInfoButton_Click" 
+                    Padding="12,6" Margin="0,0,8,0" MinWidth="80"/>
+            <Button Content="确定" IsDefault="True" Click="OkButton_Click" 
+                    Padding="12,6" MinWidth="80"/>
+        </StackPanel>
+    </Grid>
+</Window>
